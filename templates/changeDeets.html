@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Change {{type}}{%endblock title%}
+
+{% block body %}
+<form action="{% url 'blogApp:change' type %}" method="post" style="margin-left: 30px">
+    {% csrf_token %}
+
+    {% if type == 'name'%}
+    <div class="mb-3">
+      <label for="username" class="form-label">Enter your new Username</label>
+      <input type="username" class="form-control" id="username" name="username">
+    </div>
+
+    {% elif type == 'pass'%}
+    <div class="mb-3">
+      <label for="password" class="form-label">Enter your new password</label>
+      <input type="password" class="form-control" id="password" name="password">
+    </div>
+
+    {% elif type == 'email'%}
+    <div class="mb-3">
+        <label for="email" class="form-label">Enter your new email</label>
+        <input type="email" class="form-control" id="email" name="email">
+    </div>
+
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary" href="{% url 'blogApp:change' type %}">Submit</button>
+  </form>
+{% endblock body %}

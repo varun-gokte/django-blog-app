@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{look}}{%endblock title%}
+
+{% block body %}
+    <div class="mx-5 mt-4">
+        <h3 class="text-primary mb-0">{{look}}</h3>
+        {% if look == curr %}
+        <h6 class="text-info mx-1">{{email}}</h6>    
+        {% endif %}
+    </div>
+    
+
+    <div class="mx-5 mt-4">
+        <h4 class="text-success">Posts by {{look}}</h4>
+        {% for post in posts %}
+            <h5 class="mx-2 mt-3"><a href="{% url 'blogApp:display' post.pk %}">{{post.title}}</a></h5>
+            <p class="mx-3 mb-3">{{post.date}}</p>
+        {% endfor %}
+    </div>
+
+    {% if look == curr %}
+        <h3 class="text-primary mx-5 mt-5">Account Options</h3>
+        <div class="mx-5">
+            <a type="submit" class="btn btn-danger" href="{% url 'blogApp:change' 'name'%}">Change Username</a>
+            <a type="button" class="btn btn-warning" href="{% url 'blogApp:change' 'email'%}">Change Email</a>
+            <a type="button" class="btn btn-success" href="{% url 'blogApp:change' 'pass'%}">Change Password</a>
+        </div>       
+    {% endif %}
+    
+{% endblock body %}

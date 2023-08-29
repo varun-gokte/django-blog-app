@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+{%block title%}Home{% endblock title%} 
+{% block body%}
+<br>
+    <a type="button" class="btn btn-primary btn-lg mx-2 mb-4" href="{% url 'blogApp:create' %}">Create Post</a>
+    <br>
+    <h3 class="text-info mx-3">All posts</h3>
+    <table class="table mx-3 table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Date Created</th>
+            </tr>
+        </thead>
+        {% for entry in data %}
+        <tr>
+            <td><a href="{% url 'blogApp:display' entry.pk%}"> {{entry.title}}</a></td>
+            <td>{{entry.user_name}}</td>
+            <td>{{entry.date}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock body%}

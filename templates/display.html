@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{{post.title}}{% endblock title %}
+
+{% block body %}
+    <div class="mx-5">
+        <a type="button" class="btn btn-outline-primary btn-lg mr-2 mt-4 " href="{% url 'blogApp:home' %}">Back</a>
+        {% if user.get_username == post.user_name %}
+        <a type="button" class="btn btn-danger float-end btn-lg mx-2 mt-4" href="{% url 'blogApp:delete' post.pk%}" method="delete">Delete</a>
+        <a type="submit" class="btn btn-success float-end btn-lg mx-2 mt-4" href="{% url 'blogApp:update' post.pk%}" method="post">Edit</a>
+        {% endif %}
+    </div>
+
+    <h2 class="text-info mx-5 mt-4">{{post.title}}</h2>
+    <i class="mx-5">By <a href="{% url 'blogApp:user' post.user_name %}">{{post.user_name}}</a> | {{post.date}} </i>
+    <p class="mx-5 my-3">{{post.post_content}}</p>
+    <br>
+    
+
+    <h5 class="text-info mx-5 mt-4">Comments</h5>
+    {% if user.is_authenticated%}
+    <div class="col-6">    
+    <form action="{% url 'blogApp:display' post.pk %}" method="post" class="mx-5" >
+        {% csrf_token %}
+        <input type="text" class="form-control" id="comment" name="comment" aria-describedby="comdis" placeholder="Leave a comment">
+        <small id="comdis" class="form-text text-muted px-2">You are commenting as {{user.get_username}}.</small>
+        <br>
+        <button type="submit" class="btn btn-outline-secondary my-3 mx-1" href="{% url 'blogApp:display' post.pk %}">Submit</button>
+    </form>
+    </div>
+    {% else%}
+        <h6 class="text-info align-middle mx-5 mt-4">Log in or sign up to leave a comment</h6>
+    {% endif %}
+    <div style="margin-left: 50px">
+        {% for entry in comm %}
+            <h5 class="mt-4">{{entry.user_name}}</h5>
+            <p style="margin-left: 10px">{{entry.comment}}</p>
+        {% endfor %}
+    </div>
+    
+        
+{% endblock body %}

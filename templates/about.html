@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{%block title%}About{%endblock title%}
+{%block body%}
+
+<div class="mx-5">
+    <h3 class="mt-4">Django Blog App</h3>
+    <h4>Features of this application</h4>
+    <ul>
+        <li><b>Login/Signup</b>: One can sign up as a user of the site, and users can log in and out using their username and password</li>
+        <li><b>Creating a Post</b>: Users can create a post, with a title and some content. This post will be visible on the home page to all. You need to log in to be able to make a post.</li>
+        <li><b>Comments</b>: Users can also comment on any post they see. Non-users cannot post, as you need to be logged in to be able to comment.</li>
+        <li><b>Viewing a Post</b>: Anyone can view a post and its comments, even without an account, but only those with an account can leave a comment.</li>
+        <li><b>Profile</b>: When you are viewing a post, you can also view its author's profile page. This page includes a list of all the posts they have made.</li>
+        <li><b>Account</b>: If you are a user, and you view your own profile, you can also see settings for changing your email or username.
+    </ul>
+</div>
+
+
+
+
+
+{%endblock body%}

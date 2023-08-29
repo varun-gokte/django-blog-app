@@ -1,0 +1,32 @@
+{%extends 'base_wo_buttons.html' %}
+
+{% block auth_buttons%}
+    <div class="pb-3 mx-3">
+        <a type="button" class="btn btn-link" href="{% url 'blogApp:user' user.get_username %}">{{user.get_username}}</a>
+    </div>   
+
+    <div>
+        <form action="{% url 'blogApp:logout' %}" method="get">
+            <button type="submit" class="btn btn-outline-primary" href="{% url 'blogApp:logout'%}">Logout</button>
+        </form>
+    </div>
+    
+
+{% endblock auth_buttons%}
+
+{% block no_auth_buttons%}
+    <div class="mx-2">
+        <form action="{% url 'blogApp:login' %}" method="get">
+            <button class="btn btn-primary" type="submit" href={% url 'blogApp:login' %}>Login</button>
+        </form>
+    </div>
+
+    
+    <div class="mx-2">
+        <form action="{% url 'blogApp:signup' %}" method="get">
+            <button type="submit" class="btn btn-outline-primary" href={% url 'blogApp:signup' %}>Sign Up</button>
+        </form>
+    </div>
+    
+{% endblock no_auth_buttons%}
+
